@@ -1,10 +1,12 @@
 use std::io;
+use chrono:: Local;
 
 #[derive(Debug)]
 
 struct FoodEntry {
     name: String,
     calories:u32,
+    date:String,
 }
 
 
@@ -14,6 +16,7 @@ struct FoodEntry {
 
 fn main() {
 let mut entries: Vec<FoodEntry> = Vec::new();
+
 
 
 loop {
@@ -54,6 +57,7 @@ match choice.trim(){
 
 name:name.trim().to_string(),
 calories,
+date: Local::now().format("%Y-%m-%d").to_string(),
  });
 
 
@@ -69,7 +73,7 @@ println!("Comida agregada!");
 
 "3" => {
     for (_i,entry) in entries.iter().enumerate(){
-        println!("{}. {} - {} cal",1 + 1, entry.name, entry.calories)
+        println!("{}. {} - {} cal ({})",1 + 1, entry.name, entry.calories, entry.date)
     }
 }
 
